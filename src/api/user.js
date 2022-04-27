@@ -19,13 +19,20 @@ router.get("/user/:id", async (ctx) => {
 router.post("/postUser", async (ctx) => {
   // ctx.body = `创建用户`;
   console.log(ctx.request.body);
-  let res = await UserForm.create(ctx.request.body);
-  console.log(res);
-  ctx.response.body = {
-    rsCode: 0,
-    rsCause: "请求成功",
-    data: ctx.request.body,
-  };
+  try {
+    await UserForm.create(ctx.request.body);
+    ctx.response.body = {
+      rsCode: 0,
+      rsCause: "请求成功",
+      data: ctx.request.body,
+    };
+  } catch (e) {
+    ctx.response.body = {
+      rsCode: -1,
+      rsCause: e.errors.name.message,
+      data: e.errors.name.message,
+    };
+  }
 });
 
 router.put("/user/:id", async (ctx) => {
