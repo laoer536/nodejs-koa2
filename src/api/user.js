@@ -1,16 +1,16 @@
 const Router = require("koa-router");
 const router = new Router({
-  prefix: "",
+  prefix: "/user",
 });
 import { UserForm } from "../models/user";
 
-router.get("/user", async (ctx) => {
+router.get("/", async (ctx) => {
   console.log("查询参数", ctx.query);
   ctx.body = "获取用户列表";
   return ctx;
 });
 
-router.get("/user/:id", async (ctx) => {
+router.get("/:id", async (ctx) => {
   const { id } = ctx.params;
   ctx.body = `获取id为${id}的用户`;
   return ctx;
@@ -35,13 +35,13 @@ router.post("/postUser", async (ctx) => {
   }
 });
 
-router.put("/user/:id", async (ctx) => {
+router.put("/:id", async (ctx) => {
   const { id } = ctx.params;
   ctx.body = `修改id为${id}的用户`;
   return ctx;
 });
 
-router.del("/user/:id", async (ctx) => {
+router.del("/:id", async (ctx) => {
   const { id } = ctx.params;
   ctx.body = `删除id为${id}的用户`;
   return ctx;
