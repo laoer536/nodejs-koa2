@@ -2,12 +2,11 @@ const Router = require("koa-router");
 const router = new Router({
   prefix: "/user",
 });
-import { UserForm } from "../models/user";
+import {UserForm} from "../models/user";
 
 router.get("/", async (ctx) => {
   console.log("查询参数", ctx.query);
-  ctx.body = "获取用户列表";
-  return ctx;
+  ctx.response.body =await UserForm.find();
 });
 
 router.get("/:id", async (ctx) => {
