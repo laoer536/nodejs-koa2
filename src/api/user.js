@@ -5,7 +5,6 @@ const router = new Router({
 import {UserForm} from "../models/user";
 
 router.get("/", async (ctx) => {
-  console.log("查询参数", ctx.query);
   ctx.response.body =await UserForm.find();
 });
 
