@@ -16,7 +16,7 @@ router.get("/:id", async (ctx) => {
   return ctx;
 });
 
-router.post("/postUser", async (ctx) => {
+router.post("/add", async (ctx) => {
   // ctx.body = `创建用户`;
   console.log(ctx.request.body);
   try {
