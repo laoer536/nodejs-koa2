@@ -2,7 +2,6 @@ const Koa = require("koa");
 const mongoose = require("./src/setting/mongoose");
 const cors = require("./src/setting/koa2-cors");
 const jwt = require("./src/setting/jwt");
-// const bodyParser = require("./src/setting/bodyParser");
 const koaBody = require("./src/setting/koa-body");
 const app = new Koa();
 
