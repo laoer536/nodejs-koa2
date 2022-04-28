@@ -2,10 +2,10 @@ const Router = require("koa-router");
 const router = new Router({
   prefix: "/user",
 });
-import {UserForm} from "../models/user";
+import { UserForm } from "../models/user";
 
 router.get("/", async (ctx) => {
-  ctx.response.body =await UserForm.find();
+  ctx.response.body = await UserForm.find();
 });
 
 router.get("/:id", async (ctx) => {
