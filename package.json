@@ -4,8 +4,9 @@
   "description": "nodejs for network",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon start.js"
+    "dev": "nodemon scripts/development.js",
+    "test": "nodemon scripts/test.js",
+    "prod": "nodemon scripts/prod.js"
   },
   "devDependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
