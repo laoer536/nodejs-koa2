@@ -1,16 +1,17 @@
 const Router = require("koa-router");
-const jwtToken = require('jsonwebtoken')
+const jwtToken = require("jsonwebtoken");
 const router = new Router({
-    prefix: "/login",
+  prefix: "/login",
 });
 router.get("/", async (ctx) => {
-    const token = jwtToken.sign({ uid: '123' },process.env.JWT_SECRET, { expiresIn: '15d' });
-    ctx.response.body = {
-        code: 200,
-        entry: {
-            token: token
-        },
-    };
+  //payload中加入用户唯一信息 例如用户唯一id phoneNumber password等
+  const token = jwtToken.sign({ uid: "123" }, process.env.JWT_SECRET, {
+    expiresIn: "15d", //设置该token的过期时间
+  });
+  ctx.response.body = {
+    code: 200,
+    data: token,
+  };
 });
 
 module.exports = router;
