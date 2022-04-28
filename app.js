@@ -1,16 +1,17 @@
 const Koa = require("koa");
-const Router = require("koa-router");
 const mongoose = require("./src/setting/mongoose");
 const cors = require("./src/setting/koa2-cors");
 const jwt = require("./src/setting/jwt");
-const bodyParser = require("koa-bodyparser");
+// const bodyParser = require("./src/setting/bodyParser");
+const koaBody = require("./src/setting/koa-body");
+const app = new Koa();
 
 //api部分
 const user = require("./src/api/user");
 const login = require("./src/api/login");
+const file = require("./src/api/file");
 
-const app = new Koa();
-
+//token鉴权
 app.use(async (ctx, next) => {
   //配合鉴权
   return next().catch((err) => {
@@ -26,8 +27,8 @@ app.use(async (ctx, next) => {
 });
 
 //基础部分
-app.use(cors).use(bodyParser()).use(jwt);
+app.use(cors).use(koaBody).use(jwt);
 //api部分
-app.use(user.routes()).use(login.routes());
+app.use(user.routes()).use(login.routes()).use(file.routes());
 app.listen(9000);
 console.log("app started at port 9000...");
