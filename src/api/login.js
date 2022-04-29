@@ -8,10 +8,7 @@ router.get("/", async (ctx) => {
   const token = jwtToken.sign({ uid: "123" }, process.env.JWT_SECRET, {
     expiresIn: "15d", //设置该token的过期时间
   });
-  ctx.response.body = {
-    code: 200,
-    data: token,
-  };
+  ctx.success(0, "获取token成功", token);
 });
 
 module.exports = router;

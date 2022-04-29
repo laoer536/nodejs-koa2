@@ -16,10 +16,7 @@ app.use(async (ctx, next) => {
   //配合鉴权
   return next().catch((err) => {
     if (err.status === 401) {
-      ctx.body = {
-        rsCode: 50001,
-        rsCause: "用户鉴权失败",
-      };
+      ctx.fail(-1, "没有权限访问");
     } else {
       throw err;
     }
@@ -27,7 +24,7 @@ app.use(async (ctx, next) => {
 });
 
 //基础部分
-app.use(cors).use(koaBody).use(jwt).use(routerResponse);
+app.use(cors).use(koaBody).use(routerResponse).use(jwt);
 //api部分
 app.use(user.routes()).use(login.routes()).use(file.routes());
 app.listen(9000);
