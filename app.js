@@ -30,6 +30,6 @@ app.use(cors).use(koaBody).use(routerResponse).use(jwt);
 //api部分
 app.use(user.routes()).use(login.routes()).use(file.routes());
 //静态页面托管
-app.use(htmlHistory).use(koaStatic);
+app.use(htmlHistory).use(koaStatic); //因为前端打包的页面文件放在了web文件夹下 前端需要将项目publicPath修改为'/web/' 再打包放入 我这里前端用的是vue-router的history模式
 app.listen(9000);
 console.log("app started at port 9000...");
