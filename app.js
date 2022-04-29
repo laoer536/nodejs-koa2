@@ -3,6 +3,8 @@ const mongoose = require("./src/setting/mongoose");
 const cors = require("./src/setting/koa2-cors");
 const jwt = require("./src/setting/jwt");
 const koaBody = require("./src/setting/koa-body");
+const koaStatic = require("./src/setting/koa-static");
+const htmlHistory = require("./src/setting/html-history");
 const app = new Koa();
 const routerResponse = require("./src/setting/routerResponse");
 
@@ -27,5 +29,7 @@ app.use(async (ctx, next) => {
 app.use(cors).use(koaBody).use(routerResponse).use(jwt);
 //api部分
 app.use(user.routes()).use(login.routes()).use(file.routes());
+//静态页面托管
+app.use(htmlHistory).use(koaStatic);
 app.listen(9000);
 console.log("app started at port 9000...");
