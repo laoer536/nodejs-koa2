@@ -8,7 +8,6 @@ const setting = {
 function routerResponse(option = {}) {
   return async function (ctx, next) {
     ctx.success = function (code, msg, data) {
-      console.log("ctx.type", ctx.type);
       ctx.type = option.type || "json";
       ctx.body = {
         rsCode: code || option.successCode,
@@ -24,7 +23,6 @@ function routerResponse(option = {}) {
         rsCause: msg || option.failMsg,
         data: null,
       };
-      console.log(ctx.body);
     };
 
     await next();
