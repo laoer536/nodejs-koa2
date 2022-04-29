@@ -4,6 +4,7 @@ const cors = require("./src/setting/koa2-cors");
 const jwt = require("./src/setting/jwt");
 const koaBody = require("./src/setting/koa-body");
 const app = new Koa();
+const routerResponse = require("./src/setting/routerResponse");
 
 //api部分
 const user = require("./src/api/user");
@@ -26,7 +27,7 @@ app.use(async (ctx, next) => {
 });
 
 //基础部分
-app.use(cors).use(koaBody).use(jwt);
+app.use(cors).use(koaBody).use(jwt).use(routerResponse);
 //api部分
 app.use(user.routes()).use(login.routes()).use(file.routes());
 app.listen(9000);

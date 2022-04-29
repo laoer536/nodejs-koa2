@@ -19,17 +19,12 @@ router.post("/add", async (ctx) => {
   console.log(ctx.request.body);
   try {
     await UserForm.create(ctx.request.body);
-    ctx.response.body = {
-      rsCode: 0,
-      rsCause: "请求成功",
-      data: ctx.request.body,
-    };
+    ctx.success(0, "用户信息提交成功", ctx.request.body);
+    console.log("ctx.status", ctx.status);
   } catch (e) {
-    ctx.response.body = {
-      rsCode: -1,
-      rsCause: e.errors.name.message,
-      data: e.errors.name.message,
-    };
+    console.log("ctx.status", ctx.status);
+    console.log(e);
+    ctx.fail(-1, e._message);
   }
 });
 

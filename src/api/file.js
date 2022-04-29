@@ -14,13 +14,10 @@ router.post("/upload", async (ctx) => {
   const upStream = fs.createWriteStream(filePath);
   // 可读流通过管道写入可写流
   reader.pipe(upStream);
-  ctx.response.body = {
-    rsCode: 0,
-    rsCause: "上传成功",
-    data: {
-      fileUrl: `${process.env.KOA_CORS_ORIGIN}/${filePath}`, //前面那个部分后期可以替换为其他可以访问的前缀 这里本地测试用
-    },
+  const resData = {
+    fileUrl: `${process.env.KOA_CORS_ORIGIN}/${filePath}`, //前面那个部分后期可以替换为其他可以访问的前缀 这里本地测试用
   };
+  ctx.success(0, "文件上传成功", resData);
 });
 
 router.get("/download", async (ctx) => {
