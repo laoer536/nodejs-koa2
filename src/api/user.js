@@ -6,33 +6,28 @@ import { UserForm } from "../models/user";
 
 router.get("/", async (ctx) => {
   let users = await UserForm.find();
-  ctx.success(0, "获取所有用户成功", users);
+  ctx.success(users, "获取所有用户成功");
 });
 
-router.get("/:id", async (ctx) => {
+router.get("/getUserInfo", async (ctx) => {
   const { id } = ctx.params;
-  ctx.body = `获取id为${id}的用户`;
-  return ctx;
+  ctx.success(`获取id为${id}的用户`);
 });
 
 router.post("/add", async (ctx) => {
-  // ctx.body = `创建用户`;
-  console.log(ctx.request.body);
+  //
   await UserForm.create(ctx.request.body);
-  ctx.success(0, "用户信息提交成功", ctx.request.body);
-  console.log("ctx.status", ctx.status);
+  ctx.success(ctx.request.body, "用户信息提交成功");
 });
 
 router.put("/:id", async (ctx) => {
   const { id } = ctx.params;
-  ctx.body = `修改id为${id}的用户`;
-  return ctx;
+  ctx.success(`修改id为${id}的用户`);
 });
 
 router.del("/:id", async (ctx) => {
   const { id } = ctx.params;
-  ctx.body = `删除id为${id}的用户`;
-  return ctx;
+  ctx.success(`删除id为${id}的用户`);
 });
 
 module.exports = router;

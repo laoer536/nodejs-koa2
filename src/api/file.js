@@ -5,8 +5,8 @@ const router = new Router({
   prefix: "/file",
 });
 
+// 上传文件
 router.post("/upload", async (ctx) => {
-  // 上传文件
   const { filepath, originalFilename } = ctx.request.files.file || {}; // 获取上传文件
   const reader = fs.createReadStream(filepath);
   let filePath = `upload/${Math.random().toString()}-${originalFilename}`; //储存在node服务中的upload文件夹下
@@ -17,11 +17,11 @@ router.post("/upload", async (ctx) => {
   const resData = {
     fileUrl: `${process.env.KOA_CORS_ORIGIN}/${filePath}`, //前面那个部分后期可以替换为其他可以访问的前缀 这里本地测试用
   };
-  ctx.success(0, "文件上传成功", resData);
+  ctx.success(resData, "文件上传成功");
 });
 
+// 下载文件
 router.get("/download", async (ctx) => {
-  // 下载文件
   console.log("ctx.request.query", ctx.request.query);
   const { fileName } = ctx.request.query;
   const path = `upload/${fileName}`;

@@ -1,11 +1,11 @@
 const errHandle = async (ctx, next) =>
-  //配合鉴权
+  //全局异常处理 如果接口调用时有错误发生 但是真正逻辑处遗漏了对该异常的处理 就会到这里来执行
   next().catch((err) => {
     console.log("err信息", err);
     if (err.status === 401) {
-      ctx.fail(401, "没有权限访问", err); //处理jwt鉴权
+      ctx.fail("没有权限访问", 401); //处理jwt的token鉴权
     } else {
-      ctx.fail(-1, err.message); //统一处理接口调用产生的错误  此时接口处只需要考虑正常的逻辑 这里统一处理发生错误的逻辑 这里示例一下
+      ctx.fail(err.message); //处理主要是接口调用产生的错误
     }
   });
 
