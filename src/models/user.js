@@ -1,14 +1,12 @@
-import mongoose from "mongoose";
+const { Schema, model } = require("mongoose");
 
-const CompletedSchema = new mongoose.Schema(
+const CompletedSchema = new Schema(
   {
     name: { type: String, required: true },
     sex: { type: Number, enum: [0, 1], required: true },
     phone: { type: String, required: true },
   },
-  { collection: "user" }
+  { collection: "users", versionKey: false, timestamps: true }
 );
 
-// CompletedSchema.index({ slug: 1, userid: 1 }, { unique: true })
-
-export const UserForm = mongoose.model("user", CompletedSchema);
+export const UserForm = model("UserForm", CompletedSchema);
