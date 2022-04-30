@@ -8,10 +8,6 @@ const router = new Router({
 router.post("/upload", async (ctx) => {
   // 上传文件
   const { filepath, originalFilename } = ctx.request.files.file || {}; // 获取上传文件
-  if (!filepath) {
-    ctx.fail(-1, "请选择文件后再上传");
-    return;
-  }
   const reader = fs.createReadStream(filepath);
   let filePath = `upload/${Math.random().toString()}-${originalFilename}`; //储存在node服务中的upload文件夹下
   // 创建可写流
