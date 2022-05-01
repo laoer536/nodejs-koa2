@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon scripts/development.js",
     "test": "nodemon scripts/test.js",
-    "prod": "nodemon scripts/prod.js"
+    "prod": "nodemon scripts/production.js"
   },
   "devDependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
