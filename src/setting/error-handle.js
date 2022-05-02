@@ -3,9 +3,9 @@ const errHandle = async (ctx, next) =>
   next().catch((err) => {
     console.log("err信息", err);
     if (err.status === 401) {
-      ctx.fail("请先登录后访问", 401); //处理jwt的token鉴权
+      ctx.fail("请先登录后访问", err, 401); //处理jwt的token鉴权
     } else {
-      ctx.fail(err.message); //处理主要是接口调用产生的错误
+      ctx.fail(err.message, err); //处理主要是接口调用产生的错误
     }
   });
 

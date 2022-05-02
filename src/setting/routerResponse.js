@@ -17,13 +17,13 @@ function routerResponse(option = {}) {
       };
     };
 
-    ctx.fail = function (msg, code) {
+    ctx.fail = function (msg, err, code) {
       //发生异常时前端期望得到异常信息描述和对应的状态码
       ctx.type = option.type || "json";
       ctx.body = {
         rsCode: code || option.failCode,
         rsCause: msg || option.failMsg,
-        data: null,
+        data: err || null,
       };
     };
 
