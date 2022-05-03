@@ -1,3 +1,4 @@
+// const { verify } = require("jsonwebtoken");  verify可以用来解析token得到其payload里面用户信息 因为我们使用了jwt验证 所以全局的ctx.state.user里面就有该用户信息
 const Router = require("koa-router");
 const router = new Router({
   prefix: "/user",
@@ -6,6 +7,7 @@ import { UserForm } from "../models/user";
 
 router.get("/", async (ctx) => {
   let users = await UserForm.find();
+  console.log(ctx.state.user); //这里能拿到当前token里面的用户信息 全局可用
   ctx.success(users, "获取所有用户成功");
 });
 
