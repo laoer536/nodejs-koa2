@@ -4,15 +4,17 @@
   "description": "nodejs for network",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon scripts/development.js",
-    "test": "nodemon scripts/test.js",
-    "prod": "nodemon scripts/production.js",
+    "dev": "nodemon scripts/index.js --mode=development",
+    "test": "nodemon scripts/index.js --mode=test",
+    "prod": "nodemon scripts/index.js --mode=production",
     "format": "prettier --write \"./**/*.{html,js,json,md}\""
   },
   "devDependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-register": "^6.26.0",
     "dotenv": "^16.0.0",
+    "eslint": "^8.33.0",
+    "eslint-config-code-style-lint": "^3.0.6",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
     "koa-body": "^5.0.0",
@@ -21,6 +23,7 @@
     "koa-sendfile": "^3.0.0",
     "koa-static": "^5.0.0",
     "koa2-cors": "^2.0.6",
+    "minimist": "^1.2.7",
     "mongoose": "^6.3.1",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.2"
