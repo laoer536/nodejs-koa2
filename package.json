@@ -7,9 +7,11 @@
     "dev": "nodemon scripts/index.js --mode=development",
     "test": "nodemon scripts/index.js --mode=test",
     "prod": "nodemon scripts/index.js --mode=production",
-    "format": "prettier --write \"./**/*.{html,js,json,md}\""
+    "format": "prettier --write \"./**/*.{html,js,json,md}\"",
+    "apidoc": "apidoc -i src/api -o apidoc && node scripts/apiDocPathFix.js"
   },
   "devDependencies": {
+    "apidoc": "^0.54.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-register": "^6.26.0",
     "dotenv": "^16.0.0",
