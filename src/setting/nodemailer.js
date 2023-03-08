@@ -13,7 +13,7 @@ let transporter = nodemailer.createTransport({
 //pass 不是邮箱账户的密码而是stmp的授权码（必须是相应邮箱的stmp授权码）
 //邮箱---设置--账户--POP3/SMTP服务---开启---获取stmp授权码
 
-async function sendMail(mail, code, call) {
+function sendMail(mail, code, call) {
   // 发送的配置项
   let mailOptions = {
     from: '"laoer536" <laoer536@163.com>', // 发送方
@@ -23,12 +23,14 @@ async function sendMail(mail, code, call) {
   }
 
   //发送函数
-  await transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      throw error
-    } else {
-      call && call(true) //因为是异步 所有需要回调函数通知成功结果
-    }
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(info)
+      }
+    })
   })
 }
 
