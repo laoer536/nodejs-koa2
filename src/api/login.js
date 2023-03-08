@@ -1,5 +1,6 @@
 const Router = require('koa-router')
 const jwtToken = require('jsonwebtoken')
+const { sendMail } = require('../setting/nodemailer')
 const router = new Router({
   prefix: '/login',
 })
@@ -20,6 +21,13 @@ router.post('/', async (ctx) => {
     expiresIn: '15d', //设置该token的过期时间
   })
   ctx.success(token, '获取token成功')
+})
+
+router.post('/email', async (ctx) => {
+  const { email } = ctx.request.body
+  const code = Math.floor(Math.random() * 10000)
+  await sendMail(email, code)
+  ctx.success(null, '发送验证码邮件成功')
 })
 
 module.exports = router
