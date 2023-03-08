@@ -11,4 +11,5 @@ for nodejs network
 - [x] 全局错误捕获
 - [x] 文件上传下载
 - [x] mongoDB的数据库链接与操作demo
+- [x] 命令式生成api文档，并可以在线调试（执行‘pnpm run apidoc’后访问http://localhost:9000/apidoc 查看并调试接口）使用[apidoc](https://apidocjs.com/)生成
 - [ ] more
