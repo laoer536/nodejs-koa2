@@ -11,4 +11,5 @@ for nodejs network
 - [x] 全局错误捕获
 - [x] 文件上传下载
 - [x] mongoDB的数据库链接与操作demo
+- [x] 定时任务
 - [ ] more

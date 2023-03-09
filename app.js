@@ -8,6 +8,7 @@ const htmlHistory = require('./src/setting/html-history')
 const routerResponse = require('./src/setting/routerResponse')
 const errHandle = require('./src/setting/error-handle')
 const app = new Koa()
+const schedule = require('./src/schedule')
 
 //api部分
 const user = require('./src/api/user')
