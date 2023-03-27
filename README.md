@@ -2,7 +2,7 @@
 
 for nodejs network
 
-- [x] jwt鉴权
+- [x] jwt鉴权，token生成，登陆发送邮箱验证码
 
 - [x] 邮箱发送
 
