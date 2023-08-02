@@ -2,5 +2,5 @@
   "env": {
     "node": true
   },
-  "extends": ["code-style-lint"]
+  "extends": ["code-style-lint-ts"]
 }
