@@ -1,11 +1,12 @@
 import type { RouterContext } from 'koa-router'
 import type { ApiItem } from './types'
+import { connection } from '../../collection/mysql'
 export const userApis: ApiItem[] = [
   {
     method: 'get',
     path: '/',
     fn: async (ctx: RouterContext) => {
-      ctx.body = { name: 'liu' }
+      ctx.body = connection.query('select * from table limit 10')
     },
   },
   {

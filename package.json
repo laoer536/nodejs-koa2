@@ -12,11 +12,13 @@
   "dependencies": {
     "koa": "^2.14.2",
     "koa-router": "^12.0.0",
-    "koa-sendfile": "^3.0.0"
+    "koa-sendfile": "^3.0.0",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "@types/koa": "^2.13.8",
     "@types/koa-router": "^7.4.4",
+    "@types/mysql": "^2.15.21",
     "@types/node": "^20.4.5",
     "@types/supertest": "^2.0.12",
     "eslint": "^8.46.0",
