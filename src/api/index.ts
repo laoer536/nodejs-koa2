@@ -8,7 +8,8 @@ const router = new Router()
 let prefix: keyof typeof apis
 for (prefix in apis) {
   for (const apiItem of apis[prefix]) {
-    router.prefix(prefix)[apiItem.method](apiItem.path, apiItem.fn)
+    console.log(apiItem)
+    router[apiItem.method](prefix + apiItem.path, apiItem.fn)
   }
 }
 

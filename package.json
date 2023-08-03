@@ -18,10 +18,12 @@
     "@types/koa": "^2.13.8",
     "@types/koa-router": "^7.4.4",
     "@types/node": "^20.4.5",
+    "@types/supertest": "^2.0.12",
     "eslint": "^8.46.0",
     "eslint-config-code-style-lint-ts": "^3.0.6",
     "jiti": "^1.19.1",
-    "prettier": "^3.0.0",
+    "prettier": "^2.8.8",
+    "supertest": "^6.3.3",
     "typescript": "^5.1.6"
   }
 }

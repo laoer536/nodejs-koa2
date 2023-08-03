@@ -5,15 +5,15 @@ export const userApis: ApiItem[] = [
     method: 'get',
     path: '/',
     fn: async (ctx: RouterContext) => {
-      console.log(ctx.state.user) //这里能拿到当前token里面的用户信息 全局可用
+      ctx.body = { name: 'liu' }
     },
   },
   {
     method: 'get',
     path: '/getUserInfo',
     fn: async (ctx: RouterContext) => {
-      const { id } = ctx.params
-      console.log(`获取id为${id}的用户`)
+      const { id } = ctx.query
+      ctx.body = `获取id为${id}的用户sss`
     },
   },
   {

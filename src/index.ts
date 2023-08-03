@@ -1,4 +1,5 @@
 import koa from 'koa'
+import router from './api'
 const app = new koa()
-app.use(async (ctx, nex) => {})
-app.listen(3000)
+app.use(router.routes())
+app.listen(8080)
