@@ -1,6 +1,6 @@
 import type { RouterContext } from 'koa-router'
-import type { ApiItem } from './types'
 import { connection } from '../../collection/mysql'
+import { ApiItem } from '../../type.global'
 export const userApis: ApiItem[] = [
   {
     method: 'get',

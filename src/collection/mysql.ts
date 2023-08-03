@@ -5,7 +5,7 @@ const connection = mysql.createPool({
   user: 'root',
   password: 'my-secret-pw',
   database: 'test-koa2',
-  multipleStatements: true,
+  multipleStatements: true, // Enable multiple SQL statements to query at the same time.
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
