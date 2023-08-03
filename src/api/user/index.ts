@@ -4,9 +4,10 @@ import { connection } from '../../collection/mysql'
 export const userApis: ApiItem[] = [
   {
     method: 'get',
-    path: '/',
+    path: '',
     fn: async (ctx: RouterContext) => {
-      ctx.body = connection.query('select * from table limit 10')
+      const [res] = await connection.execute('select * from users limit 10')
+      ctx.body = res
     },
   },
   {

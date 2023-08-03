@@ -1,18 +1,16 @@
-import mysql from 'mysql'
+import mysql from 'mysql2/promise'
 
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
   host: 'localhost',
-  user: 'neo',
+  user: 'root',
   password: 'my-secret-pw',
   database: 'test-koa2',
-})
-
-connection.connect(function (err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack)
-    return
-  }
-  console.log('connected as id ' + connection.threadId)
+  multipleStatements: true,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  enableKeepAlive: true,
+  keepAliveInitialDelay: 0,
 })
 
 export { connection }
