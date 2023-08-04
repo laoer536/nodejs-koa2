@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev:local": "nodemon src/index.ts .env.development",
+    "dev:test": "nodemon src/index.ts .env.development.local"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "@types/koa-router": "^7.4.4",
     "@types/node": "^20.4.5",
     "@types/supertest": "^2.0.12",
+    "dotenv": "^16.3.1",
     "eslint": "^8.46.0",
     "eslint-config-code-style-lint-ts": "^3.0.6",
     "nodemon": "^3.0.1",

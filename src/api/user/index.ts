@@ -6,7 +6,7 @@ export const userApis: ApiItem[] = [
     method: 'get',
     path: '',
     fn: async (ctx: RouterContext) => {
-      const [res] = await connection.execute('select * from users limit 10')
+      const [res] = await connection.execute('select * from Users limit 10')
       ctx.body = res
     },
   },
