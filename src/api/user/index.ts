@@ -6,8 +6,7 @@ export const userApis: ApiItem[] = [
     method: 'get',
     path: '',
     fn: async (ctx: RouterContext) => {
-      const [res] = await connection.execute('select * from Users limit 10')
-      ctx.body = res
+      ctx.body = await connection.user.findMany()
     },
   },
   {
