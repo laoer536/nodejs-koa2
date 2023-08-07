@@ -14,7 +14,7 @@ export const userApis: ApiItem[] = [
     path: '/getUserInfo',
     fn: async (ctx: RouterContext) => {
       const { id } = ctx.query
-      ctx.body = `获取id为${id}的用户sss`
+      ctx.body = await connection.user.findUnique({ where: { id: Number(id) } })
     },
   },
   {
@@ -23,7 +23,7 @@ export const userApis: ApiItem[] = [
     fn: async (ctx: RouterContext) => {
       console.log(ctx.request.body, '用户信息提交成功')
       await connection.user.create({ data: ctx.request.body })
-      ctx.response.body = '用户信息提交成功'
+      ctx.body = '用户信息提交成功'
     },
   },
   {
@@ -31,7 +31,9 @@ export const userApis: ApiItem[] = [
     path: '/:id',
     fn: async (ctx: RouterContext) => {
       const { id } = ctx.params
-      console.log(`修改id为${id}的用户`)
+      const { email: newEmail } = ctx.request.body
+      await connection.user.update({ where: { id: Number(id) }, data: { email: newEmail } })
+      ctx.body = `成功修改ID为${id}的用户的email为${newEmail}`
     },
   },
   {
@@ -39,7 +41,8 @@ export const userApis: ApiItem[] = [
     path: '/:id',
     fn: async (ctx: RouterContext) => {
       const { id } = ctx.params
-      console.log(`删除id为${id}的用户`)
+      await connection.user.delete({ where: { id: Number(id) } })
+      ctx.body = `成功删除id为${id}的用户`
     },
   },
 ]
