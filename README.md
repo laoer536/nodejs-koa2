@@ -2,6 +2,8 @@
 
 for nodejs network
 
+![截屏2023-08-07 21.26.26.png](https://s2.loli.net/2023/08/07/48ciEYRxsQSzVeZ.png)
+
 - [x] jwt鉴权，token生成，登陆发送邮箱验证码
 
 - [x] 邮箱发送
