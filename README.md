@@ -4,27 +4,25 @@ for nodejs network
 
 ![截屏2023-08-07 21.26.26.png](https://s2.loli.net/2023/08/07/48ciEYRxsQSzVeZ.png)
 
-- [x] jwt鉴权，token生成，登陆发送邮箱验证码
+- [ ] jwt鉴权，token生成，登陆发送邮箱验证码
 
-- [x] 邮箱发送
+- [ ] 邮箱发送
 
 - [x] 环境变量
 
-- [x] 静态资源托管
+- [ ] 静态资源托管
 
-- [x] HTML history 模式实现，实现web history模式访问
+- [ ] HTML history 模式实现，实现web history模式访问
 
-- [x] 统一接口返回体
+- [ ] 统一接口返回体
 
-- [x] 全局错误捕获
+- [ ] 全局错误捕获
 
-- [x] 文件上传下载
+- [ ] 文件上传下载
 
-- [x] mongoDB的数据库链接与操作demo
+- [x] mysql的数据库链接与操作demo(使用prisma ORM)
 
-- [x] 命令式生成api文档，并可以在线调试（执行‘pnpm run apidoc’后访问http://localhost:9000/apidoc 查看并调试接口）使用[apidoc](https://apidocjs.com/)生成
-
-- [x] 定时任务
+- [ ] 定时任务
 
 - [ ] more
 
@@ -32,17 +30,36 @@ for nodejs network
 
 ## How to use
 
-```js
-//downlod
-pnpm install
+1. 安装docker
 
-//run project
-pnpm dev
+2. 执行：[mysql - Official Image | Docker Hub](https://hub.docker.com/_/mysql)
 
-//more > Or you may want to create api document
-pnpm apidoc
-//then run
-pnpm dev
-//then see api document online, and you can test api onlone on http://localhost:9000/apidoc
-```
+   ```
+   docker run --name test-koa2 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8
+   ```
 
+   
+
+3. 下载代码zip并解压进入该项目中
+
+4. 执行
+
+   ```
+   pnpm i
+   ```
+
+   ```
+   npx prisma migrate dev --name init
+   ```
+
+   ```
+   pnpm dev:local
+   ```
+
+
+
+OK, finish.
+
+You can see
+
+![截屏2023-08-07 21.50.30.png](https://s2.loli.net/2023/08/07/JAkvecsMoSjN97X.png)
