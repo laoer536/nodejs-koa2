@@ -21,7 +21,8 @@ export const userApis: ApiItem[] = [
     method: 'post',
     path: '/add',
     fn: async (ctx: RouterContext) => {
-      console.log(ctx.request.res, '用户信息提交成功')
+      console.log(ctx.request.body, '用户信息提交成功')
+      ctx.response.body = ctx.request.body
     },
   },
   {
