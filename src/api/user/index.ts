@@ -1,6 +1,7 @@
 import type { RouterContext } from 'koa-router'
 import { connection } from '../../collection/mysql'
 import { ApiItem } from '../../type.global'
+import { Prisma } from '@prisma/client'
 export const userApis: ApiItem[] = [
   {
     method: 'get',
@@ -21,8 +22,9 @@ export const userApis: ApiItem[] = [
     method: 'post',
     path: '/add',
     fn: async (ctx: RouterContext) => {
-      console.log(ctx.request.body, '用户信息提交成功')
-      await connection.user.create({ data: ctx.request.body })
+      const newUserInfo = Prisma.validator<Prisma.UserCreateInput>()(ctx.request.body)
+      console.log('用户信息', newUserInfo)
+      await connection.user.create({ data: newUserInfo })
       ctx.body = '用户信息提交成功'
     },
   },
