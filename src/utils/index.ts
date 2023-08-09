@@ -14,6 +14,6 @@ export function loadEnv() {
   console.log(parsed)
 }
 
-export function returnOnlyMessage(ctx: RouterContext | DefaultContext, message: string) {
-  ctx.body = { isMessage: true, message }
+export function returnOnlyMessage(ctx: RouterContext | DefaultContext, message: string, data?: any) {
+  ctx.body = { isMessage: true, message, data }
 }
