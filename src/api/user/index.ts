@@ -35,8 +35,8 @@ export const userApis: ApiItem[] = [
     fn: async (ctx: RouterContext) => {
       const { id } = ctx.params
       const { email: newEmail } = ctx.request.body
-      await connection.user.update({ where: { id: Number(id) }, data: { email: newEmail } })
-      returnOnlyMessage(ctx, `成功修改ID为${id}的用户的email为${newEmail}`)
+      const data = await connection.user.update({ where: { id: Number(id) }, data: { email: newEmail } })
+      returnOnlyMessage(ctx, `成功修改ID为${id}的用户的email为${newEmail}`, data)
     },
   },
   {
@@ -44,8 +44,8 @@ export const userApis: ApiItem[] = [
     path: '/:id',
     fn: async (ctx: RouterContext) => {
       const { id } = ctx.params
-      await connection.user.delete({ where: { id: Number(id) } })
-      returnOnlyMessage(ctx, `成功删除id为${id}的用户`)
+      const data = await connection.user.delete({ where: { id: Number(id) } })
+      returnOnlyMessage(ctx, `成功删除id为${id}的用户`, data)
     },
   },
 ]
