@@ -2,6 +2,7 @@ import type { RouterContext } from 'koa-router'
 import { connection } from '../../collection/mysql'
 import { ApiItem } from '../../type.global'
 import { Prisma } from '@prisma/client'
+import { returnOnlyMessage } from '../../utils'
 export const userApis: ApiItem[] = [
   {
     method: 'get',
@@ -25,7 +26,7 @@ export const userApis: ApiItem[] = [
       const newUserInfo = Prisma.validator<Prisma.UserCreateInput>()(ctx.request.body)
       console.log('用户信息', newUserInfo)
       await connection.user.create({ data: newUserInfo })
-      ctx.body = '用户信息提交成功'
+      returnOnlyMessage(ctx, '用户信息提交成功')
     },
   },
   {
@@ -35,7 +36,7 @@ export const userApis: ApiItem[] = [
       const { id } = ctx.params
       const { email: newEmail } = ctx.request.body
       await connection.user.update({ where: { id: Number(id) }, data: { email: newEmail } })
-      ctx.body = `成功修改ID为${id}的用户的email为${newEmail}`
+      returnOnlyMessage(ctx, `成功修改ID为${id}的用户的email为${newEmail}`)
     },
   },
   {
@@ -44,7 +45,7 @@ export const userApis: ApiItem[] = [
     fn: async (ctx: RouterContext) => {
       const { id } = ctx.params
       await connection.user.delete({ where: { id: Number(id) } })
-      ctx.body = `成功删除id为${id}的用户`
+      returnOnlyMessage(ctx, `成功删除id为${id}的用户`)
     },
   },
 ]
