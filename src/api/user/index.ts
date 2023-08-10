@@ -24,7 +24,6 @@ export const userApis: ApiItem[] = [
     path: '/add',
     fn: async (ctx: RouterContext) => {
       const newUserInfo = Prisma.validator<Prisma.UserCreateInput>()(ctx.request.body)
-      console.log('用户信息', newUserInfo)
       const data = await connection.user.create({ data: newUserInfo })
       returnOnlyMessage(ctx, '用户信息提交成功', data)
     },

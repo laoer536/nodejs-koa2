@@ -1,3 +1,13 @@
 /** Use prisma ORM  **/
 import { PrismaClient } from '@prisma/client'
-export const connection = new PrismaClient()
+const connection = new PrismaClient()
+connection.$use(async (params, next) => {
+  const now = new Date()
+  console.log({
+    time: `${now.toLocaleDateString()}-${now.toLocaleTimeString()}`,
+    [`${params.model}.${params.action}`]: params.args,
+  })
+  return await next(params)
+})
+
+export { connection }
