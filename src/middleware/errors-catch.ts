@@ -19,7 +19,11 @@ export const errorsCatch: Middleware<DefaultState, DefaultContext, ErrorResult> 
     ctx.status = err.status || 500
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       const { code, message, meta } = err
-      ctx.body = { code, message, meta }
+      ctx.body = {
+        code,
+        message: meta?.cause ? (meta.cause as string) : message,
+        meta: meta?.cause ? undefined : meta,
+      }
     } else {
       ctx.body = { code: 'P6000', message: err.message }
     }
