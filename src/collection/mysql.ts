@@ -7,7 +7,7 @@ connection.$use(async (params, next) => {
     time: `${now.toLocaleDateString()}-${now.toLocaleTimeString()}`,
     [`${params.model}.${params.action}`]: params.args,
   })
-  return await next(params)
+  return next(params)
 })
 
 export { connection }
