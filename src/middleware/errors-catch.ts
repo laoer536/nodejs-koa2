@@ -16,16 +16,20 @@ export const errorsCatch: Middleware<DefaultState, DefaultContext, ErrorResult> 
     await next()
   } catch (e) {
     const err = e as CustomError
-    ctx.status = err.status || 500
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      const { code, message, meta } = err
-      ctx.body = {
-        code,
-        message: meta?.cause ? (meta.cause as string) : message,
-        meta: meta?.cause ? undefined : meta,
-      }
+    if (err.status === 401) {
+      ctx.body = { code: 'P6001', message: '请登录后访问' }
     } else {
-      ctx.body = { code: 'P6000', message: err.message }
+      ctx.status = err.status || 500
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        const { code, message, meta } = err
+        ctx.body = {
+          code,
+          message: meta?.cause ? (meta.cause as string) : message,
+          meta: meta?.cause ? undefined : meta,
+        }
+      } else {
+        ctx.body = { code: 'P6000', message: err.message }
+      }
     }
   }
 }

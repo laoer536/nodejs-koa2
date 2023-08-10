@@ -15,6 +15,9 @@ declare global {
       MYSQL_USER: string
       MYSQL_PASSWORD: string
       MYSQL_DATABASE: string
+      JWT_SECRET: string
+      NODEMAILER_AUTH_EMAIL: string
+      NODEMAILER_AUTH_PASS: string
     }
   }
 }
