@@ -17,7 +17,7 @@ export const authorityApis: ApiItem[] = [
           await connection.user.upsert({
             where: { email },
             update: { email },
-            create: { email },
+            create: { email, name: `用户${randomCode}` },
           })
           const token = jsonwebtoken.sign({ email }, process.env.JWT_SECRET, { expiresIn: '7d' })
           ctx.body = { token }
