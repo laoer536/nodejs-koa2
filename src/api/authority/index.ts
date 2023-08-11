@@ -3,7 +3,7 @@ import { connection } from '../../collection/mysql'
 import { ApiItem } from '../../type.global'
 import { redis } from '../../collection/redis'
 import jsonwebtoken from 'jsonwebtoken'
-import { returnOnlyMessage } from '../../utils'
+import { success } from '../../utils'
 import { sendEmail } from '../../utils/nodemailer'
 export const authorityApis: ApiItem[] = [
   {
@@ -29,7 +29,7 @@ export const authorityApis: ApiItem[] = [
         const randomCode = (Math.random() * 1000000).toFixed(0)
         redis.set(email, randomCode, 'EX', 60)
         await sendEmail('test', randomCode, email)
-        returnOnlyMessage(ctx, '获取验证码成功', { randomCode })
+        success(ctx, { randomCode }, '获取验证码成功')
       }
     },
   },

@@ -14,6 +14,6 @@ export function loadEnv() {
   console.log(parsed)
 }
 
-export function returnOnlyMessage(ctx: RouterContext | DefaultContext, message: string, data?: any) {
-  ctx.body = { isMessage: true, message, data }
+export function success<T>(ctx: RouterContext | DefaultContext, data: T, message = 'success') {
+  ctx.body = { code: '200', message, data }
 }
