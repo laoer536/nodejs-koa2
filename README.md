@@ -2,7 +2,7 @@
 
 for nodejs network
 
-![截屏2023-08-11 22.44.22.png](https://s2.loli.net/2023/08/11/RPSYJeNK47kp2Vd.png)
+![WechatIMG375.jpg](https://s2.loli.net/2023/08/11/FOsENU6rkWljHGV.jpg)
 
 - [x] jwt鉴权，token生成，登陆发送邮箱验证码
 
