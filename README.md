@@ -2,11 +2,11 @@
 
 for nodejs network
 
-![截屏2023-08-07 21.26.26.png](https://s2.loli.net/2023/08/07/48ciEYRxsQSzVeZ.png)
+![截屏2023-08-11 22.44.22.png](https://s2.loli.net/2023/08/11/RPSYJeNK47kp2Vd.png)
 
-- [ ] jwt鉴权，token生成，登陆发送邮箱验证码
+- [x] jwt鉴权，token生成，登陆发送邮箱验证码
 
-- [ ] 邮箱发送
+- [x] 邮箱发送
 
 - [x] 环境变量
 
@@ -14,9 +14,9 @@ for nodejs network
 
 - [ ] HTML history 模式实现，实现web history模式访问
 
-- [ ] 统一接口返回体
+- [x] 统一接口返回体
 
-- [ ] 全局错误捕获
+- [x] 全局错误捕获
 
 - [ ] 文件上传下载
 
