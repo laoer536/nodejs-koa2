@@ -34,8 +34,16 @@ for nodejs network
 
 2. 执行：[mysql - Official Image | Docker Hub](https://hub.docker.com/_/mysql)
 
+   启动mysql
+
    ```
    docker run --name test-koa2 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8
+   ```
+
+   启动redis
+
+   ```
+   docker run --name my-redis -p 6379:6379 -d redis
    ```
 
    
