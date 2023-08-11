@@ -25,6 +25,7 @@ export const authorityApis: ApiItem[] = [
           throw new Error('验证码错误,请60s后重新获取。')
         }
       } else {
+        /** 这里逻辑前端需要限制用户需要先点击获取验证码操作 不能在未点击获取验证码按钮的情况下调用这个接口 **/
         const randomCode = (Math.random() * 1000000).toFixed(0)
         redis.set(email, randomCode, 'EX', 60)
         await sendEmail('test', '本次登录验证码是' + randomCode, email)
