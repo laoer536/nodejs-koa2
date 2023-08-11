@@ -16,10 +16,10 @@ export const errorsCatch: Middleware<DefaultState, DefaultContext, ErrorResult> 
     await next()
   } catch (e) {
     const err = e as CustomError
+    ctx.status = err.status || 500
     if (err.status === 401) {
-      ctx.body = { code: 'P6001', message: '请登录后访问' }
+      ctx.body = { code: '401', message: '请登录后访问' }
     } else {
-      ctx.status = err.status || 500
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         const { code, message, meta } = err
         ctx.body = {

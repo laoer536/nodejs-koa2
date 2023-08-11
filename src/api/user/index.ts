@@ -8,6 +8,7 @@ export const userApis: ApiItem[] = [
     method: 'get',
     path: '',
     fn: async (ctx: RouterContext) => {
+      console.log(ctx.state.user)
       success(ctx, await connection.user.findMany())
     },
   },
