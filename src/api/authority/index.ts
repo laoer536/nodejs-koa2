@@ -12,7 +12,6 @@ export const authorityApis: ApiItem[] = [
     fn: async (ctx: RouterContext) => {
       const { email, randomCode } = ctx.request.body
       const preRandomCode = await redis.get(email)
-      console.log(preRandomCode)
       if (preRandomCode) {
         if (randomCode === preRandomCode) {
           await connection.user.upsert({
@@ -28,7 +27,7 @@ export const authorityApis: ApiItem[] = [
       } else {
         const randomCode = (Math.random() * 1000000).toFixed(0)
         redis.set(email, randomCode, 'EX', 60)
-        await sendEmail('test', randomCode, email)
+        await sendEmail('test', '本次登录验证码是' + randomCode, email)
         success(ctx, { randomCode }, '获取验证码成功')
       }
     },
