@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:local": "nodemon src/index.ts .env.development",
+    "dev:local": "nodemon src/index.ts .env.local",
     "dev:test": "nodemon src/index.ts .env.development.local"
   },
   "keywords": [],

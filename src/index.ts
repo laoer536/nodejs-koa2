@@ -3,6 +3,8 @@ import router from './api'
 import koaBody from 'koa-body'
 import jwt from 'koa-jwt'
 import { errorsCatch } from './middleware/errors-catch'
+import { loadEnv } from './utils'
+loadEnv()
 
 console.log(process.env.JWT_SECRET)
 
