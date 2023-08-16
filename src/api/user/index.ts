@@ -1,6 +1,6 @@
 import type { RouterContext } from 'koa-router'
 import { connection } from '../../collection/mysql'
-import { ApiItem } from '../../type.global'
+import type { ApiItem } from '../../types/type.global'
 import { Prisma } from '@prisma/client'
 import { success } from '../../utils'
 export const userApis: ApiItem[] = [

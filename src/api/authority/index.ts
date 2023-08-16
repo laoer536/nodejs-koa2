@@ -1,6 +1,6 @@
 import type { RouterContext } from 'koa-router'
 import { connection } from '../../collection/mysql'
-import { ApiItem } from '../../type.global'
+import type { ApiItem } from '../../types/type.global'
 import { redis } from '../../collection/redis'
 import jsonwebtoken from 'jsonwebtoken'
 import { success } from '../../utils'
