@@ -10,9 +10,10 @@ export function getColoredText(text: string, colorCode: LogColors) {
 
 export function loadEnv() {
   const [envPath] = process.argv.slice(2)
-  console.log(envPath)
   const allEnvString = readFileSync('.env', 'utf-8') + '\n' + readFileSync(envPath, 'utf-8')
   const allEnv = parse(allEnvString)
+  console.log(getColoredText('当前环境变量：', LogColors.green))
+  console.log(allEnv)
   for (const key in allEnv) {
     process.env[key] = allEnv[key]
   }
