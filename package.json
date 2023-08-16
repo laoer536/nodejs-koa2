@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev:local": "nodemon src/index.ts .env.local",
-    "dev:test": "nodemon src/index.ts .env.development.local"
+    "dev:test": "nodemon src/index.ts .env.development.local",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +34,7 @@
     "dotenv": "^16.3.1",
     "eslint": "^8.46.0",
     "eslint-config-code-style-lint-ts": "^3.0.6",
+    "husky": "^8.0.3",
     "nodemon": "^3.0.1",
     "prettier": "^2.8.8",
     "ts-node": "^10.9.1",

@@ -5,19 +5,3 @@ export interface ApiItem {
   path: string
   fn(ctx?: RouterContext, next?: Next): Promise<void>
 }
-
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv {
-      NODE_ENV: string
-      MYSQL_HOST: string
-      MYSQL_PORT: string
-      MYSQL_USER: string
-      MYSQL_PASSWORD: string
-      MYSQL_DATABASE: string
-      JWT_SECRET: string
-      NODEMAILER_AUTH_EMAIL: string
-      NODEMAILER_AUTH_PASS: string
-    }
-  }
-}
