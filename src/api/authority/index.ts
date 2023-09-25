@@ -19,7 +19,7 @@ export const authorityApis: ApiItem[] = [
             update: { email },
             create: { email, name: `用户${randomCode}` },
           })
-          const token = jsonwebtoken.sign({ email }, process.env.JWT_SECRET, { expiresIn: '7d' })
+          const token = jsonwebtoken.sign({ email }, process.env.JWT_SECRET as string, { expiresIn: '7d' })
           ctx.body = { token }
         } else {
           throw new Error('验证码错误,请60s后重新获取。')
