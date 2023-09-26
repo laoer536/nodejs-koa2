@@ -1,5 +1,7 @@
 import type { DefaultContext, DefaultState, Middleware } from 'koa'
 import { Prisma } from '@prisma/client'
+import { getColoredText } from '../utils'
+import { LogColors } from '../utils/enum'
 
 interface CustomError extends Error {
   status?: number
@@ -31,5 +33,6 @@ export const errorsCatch: Middleware<DefaultState, DefaultContext, ErrorResult> 
         ctx.body = { code: 'P6000', message: err.message }
       }
     }
+    console.log(getColoredText('Error:' + JSON.stringify(ctx.body), LogColors.red))
   }
 }
