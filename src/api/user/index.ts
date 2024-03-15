@@ -14,15 +14,15 @@ export const userApis: ApiItem[] = [
   },
   {
     method: 'get',
-    path: '/getUserInfo',
+    path: '/:id',
     fn: async (ctx: RouterContext) => {
-      const { id } = ctx.query
+      const { id } = ctx.params
       success(ctx, await connection.user.findUnique({ where: { id: Number(id) } }))
     },
   },
   {
     method: 'post',
-    path: '/add',
+    path: '',
     fn: async (ctx: RouterContext) => {
       const newUserInfo = Prisma.validator<Prisma.UserCreateInput>()(ctx.request.body)
       const data = await connection.user.create({ data: newUserInfo })
