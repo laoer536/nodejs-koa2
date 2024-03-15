@@ -6,7 +6,7 @@
   "scripts": {
     "dev:local": "nodemon src/index.ts .env.local",
     "dev:test": "nodemon src/index.ts .env.development.local",
-    "prod": "node dist/index.mjs .env.local",
+    "prod": "pnpm build && node dist/index.mjs .env.local",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "prepare": "husky install",
