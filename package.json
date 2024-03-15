@@ -6,16 +6,14 @@
   "scripts": {
     "dev:local": "nodemon src/index.ts .env.local",
     "dev:test": "nodemon src/index.ts .env.development.local",
+    "prod": "node dist/index.mjs .env.local",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "prepare": "husky install",
     "build": "pnpm unbuild",
     "prisma:new": "prisma migrate dev && prisma generate",
     "prisma:pull": "prisma db pull && prisma generate",
-    "prisma:push": "prisma db push && prisma generate",
-    "build:docker": "yarn build && docker build -t nodejs-koa2 .",
-    "docker:run": "docker rm -f nodejs-koa2 && docker run --name nodejs-koa2 -d -p 8084:3000 nodejs-koa2",
-    "release:local": "yarn build:docker && yarn docker:run"
+    "prisma:push": "prisma db push && prisma generate"
   },
   "keywords": [],
   "author": "",
