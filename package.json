@@ -2,13 +2,20 @@
   "name": "nodejs-koa2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.mjs",
   "scripts": {
     "dev:local": "nodemon src/index.ts .env.local",
     "dev:test": "nodemon src/index.ts .env.development.local",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "pnpm unbuild",
+    "prisma:new": "prisma migrate dev && prisma generate",
+    "prisma:pull": "prisma db pull && prisma generate",
+    "prisma:push": "prisma db push && prisma generate",
+    "build:docker": "yarn build && docker build -t nodejs-koa2 .",
+    "docker:run": "docker rm -f nodejs-koa2 && docker run --name nodejs-koa2 -d -p 8084:3000 nodejs-koa2",
+    "release:local": "yarn build:docker && yarn docker:run"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +29,7 @@
     "@opentelemetry/semantic-conventions": "^1.17.0",
     "@prisma/client": "5.1.1",
     "@prisma/instrumentation": "^5.3.1",
+    "dotenv": "^16.3.1",
     "ioredis": "^5.3.2",
     "jsonwebtoken": "^9.0.1",
     "koa": "^2.14.2",
@@ -29,9 +37,8 @@
     "koa-jwt": "^4.0.4",
     "koa-router": "^12.0.0",
     "koa-sendfile": "^3.0.0",
-    "nodemailer": "^6.9.4",
-    "prisma": "^5.1.1",
-    "typescript": "5.1"
+    "nodemailer": "^6.9.12",
+    "prisma": "^5.1.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
@@ -41,12 +48,13 @@
     "@types/koa-router": "^7.4.4",
     "@types/node": "^20.4.5",
     "@types/nodemailer": "^6.4.9",
-    "dotenv": "^16.3.1",
     "eslint": "^8.46.0",
     "eslint-config-code-style-lint-ts": "^3.0.6",
     "husky": "^8.0.3",
-    "nodemon": "^3.0.1",
+    "nodemon": "^3.1.0",
     "prettier": "^2.8.8",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.2",
+    "typescript": "~5.4.2",
+    "unbuild": "^2.0.0"
   }
 }
