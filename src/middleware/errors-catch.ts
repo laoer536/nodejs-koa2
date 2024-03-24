@@ -28,6 +28,5 @@ export const errorsCatch: Middleware = async (ctx, next) => {
         ctx.body = { code: 'P6000', message: err.message }
       }
     }
-    console.log(getColoredText('Error:' + JSON.stringify(ctx.body), LogColors.red))
   }
 }

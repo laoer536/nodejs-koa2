@@ -20,7 +20,9 @@ export const authorityApis: ApiItem[] = [
             create: { email, name: `用户${randomCode}` },
           })
           const token = jsonwebtoken.sign({ email }, process.env.JWT_SECRET as string, { expiresIn: '7d' })
-          ctx.body = { token }
+          return {
+            data: { token },
+          }
         } else {
           throw new Error('验证码错误,请60s后重新获取。')
         }
@@ -30,6 +32,9 @@ export const authorityApis: ApiItem[] = [
         redis.set(email, randomCode, 'EX', 60)
         await sendEmail('test', '本次登录验证码是' + randomCode, email)
         success(ctx, { randomCode }, '获取验证码成功')
+        return {
+          data: null,
+        }
       }
     },
   },

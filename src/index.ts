@@ -4,9 +4,7 @@ import { koaBody } from 'koa-body'
 import jwt from 'koa-jwt'
 import { errorsCatch } from './middleware/errors-catch'
 import { loadEnv } from './utils'
-import record from './record'
 import type { DotenvParseOutput } from 'dotenv'
-record()
 
 function appRun(envInfo: DotenvParseOutput) {
   const app = new koa()

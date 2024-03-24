@@ -1,30 +1,47 @@
-// Imports
-import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
-import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
-import { registerInstrumentations } from '@opentelemetry/instrumentation'
-import { SimpleSpanProcessor } from '@opentelemetry/sdk-trace-base'
-import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node'
-import { PrismaInstrumentation } from '@prisma/instrumentation'
 import { Resource } from '@opentelemetry/resources'
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
+import { SimpleSpanProcessor, ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base'
+import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node'
+import { trace, Tracer } from '@opentelemetry/api'
+import { JaegerExporter } from '@opentelemetry/exporter-jaeger'
+import { connection } from '../collection/mysql'
+import { success } from '../utils'
+import type { RouterContext } from 'koa-router'
+import { ApiRes } from '../types/type.global'
 
-export default function record() {
-  // Configure the trace provider
+export function initializeTracing(serviceName: string): Tracer {
   const provider = new NodeTracerProvider({
     resource: new Resource({
-      [SemanticResourceAttributes.SERVICE_NAME]: 'nodejs-koa2',
+      [SemanticResourceAttributes.SERVICE_NAME]: serviceName,
     }),
   })
 
-  // Configure how spans are processed and exported. In this case we're sending spans
-  // as we receive them to an OTLP-compatible collector (e.g. Jaeger).
-  provider.addSpanProcessor(new SimpleSpanProcessor(new OTLPTraceExporter()))
-
-  // Register your auto-instrumentors
-  registerInstrumentations({
-    tracerProvider: provider,
-    instrumentations: [new PrismaInstrumentation()],
+  const consoleExporter = new ConsoleSpanExporter()
+  const jaegerExporter = new JaegerExporter({
+    endpoint: 'http://localhost:14268/api/traces',
   })
 
-  // Register the provider globally
+  provider.addSpanProcessor(new SimpleSpanProcessor(consoleExporter))
+  provider.addSpanProcessor(new SimpleSpanProcessor(jaegerExporter))
+
   provider.register()
+
+  return trace.getTracer(serviceName)
+}
+
+export const tracer = initializeTracing('nodejs-koa2')
+
+export async function tracerFn<T>(ctx: RouterContext, apiLogic: (ctx: RouterContext) => Promise<T>, desc: string) {
+  await tracer.startActiveSpan(desc, async (requestSpan) => {
+    try {
+      const { data, message } = (await apiLogic(ctx)) as ApiRes
+      requestSpan.setAttribute('http.status', 200)
+      success(ctx, data, message)
+    } catch (e) {
+      requestSpan.setAttribute('http.status', 400)
+      throw e
+    } finally {
+      requestSpan.end()
+    }
+  })
 }
