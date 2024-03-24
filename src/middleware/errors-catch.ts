@@ -1,4 +1,4 @@
-import type { DefaultContext, DefaultState, Middleware } from 'koa'
+import type { Middleware } from 'koa'
 import { Prisma } from '@prisma/client'
 import { getColoredText } from '../utils'
 import { LogColors } from '../utils/enum'
@@ -7,13 +7,7 @@ interface CustomError extends Error {
   status?: number
 }
 
-interface ErrorResult {
-  code: string
-  message: string
-  meta?: Record<string, unknown>
-}
-
-export const errorsCatch: Middleware<DefaultState, DefaultContext, ErrorResult> = async (ctx, next) => {
+export const errorsCatch: Middleware = async (ctx, next) => {
   try {
     await next()
   } catch (e) {
@@ -22,6 +16,7 @@ export const errorsCatch: Middleware<DefaultState, DefaultContext, ErrorResult> 
     if (err.status === 401) {
       ctx.body = { code: '401', message: '请登录后访问' }
     } else {
+      ctx.status = 400
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
         const { code, message, meta } = err
         ctx.body = {

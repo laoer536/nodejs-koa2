@@ -5,9 +5,10 @@ import jwt from 'koa-jwt'
 import { errorsCatch } from './middleware/errors-catch'
 import { loadEnv } from './utils'
 import record from './record'
+import type { DotenvParseOutput } from 'dotenv'
 record()
 
-loadEnv().then((envInfo) => {
+function appRun(envInfo: DotenvParseOutput) {
   const app = new koa()
   app
     .use(errorsCatch)
@@ -19,4 +20,6 @@ loadEnv().then((envInfo) => {
     .use(koaBody({ multipart: true }))
     .use(router.routes())
   app.listen(8090)
-})
+}
+
+loadEnv().then(appRun)
