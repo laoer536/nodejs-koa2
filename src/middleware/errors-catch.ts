@@ -1,7 +1,5 @@
 import type { Middleware } from 'koa'
 import { Prisma } from '@prisma/client'
-import { getColoredText } from '../utils'
-import { LogColors } from '../utils/enum'
 
 interface CustomError extends Error {
   status?: number

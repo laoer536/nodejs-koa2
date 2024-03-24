@@ -4,7 +4,6 @@ import { SimpleSpanProcessor, ConsoleSpanExporter } from '@opentelemetry/sdk-tra
 import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node'
 import { trace, Tracer } from '@opentelemetry/api'
 import { JaegerExporter } from '@opentelemetry/exporter-jaeger'
-import { connection } from '../collection/mysql'
 import { success } from '../utils'
 import type { RouterContext } from 'koa-router'
 import { ApiRes } from '../types/type.global'
