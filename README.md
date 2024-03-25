@@ -48,7 +48,11 @@ for nodejs network
    docker run --name my-redis -p 6379:6379 -d redis
    ```
 
+   [安装和启动jaeger](https://hub.docker.com/r/jaegertracing/all-in-one)
    
+   <br/>
+
+   ![屏幕截图 2024-03-25 135427.png](https://s2.loli.net/2024/03/25/aSOXryiFG2cEQTK.png)
 
 3. 下载代码zip并解压进入该项目中
 
