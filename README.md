@@ -77,3 +77,5 @@ OK, finish.
 You can see
 
 ![截屏2023-08-07 21.50.30.png](https://s2.loli.net/2023/08/07/JAkvecsMoSjN97X.png)
+
+> jaeger监控服务地址：jaeger监控服务 `http://localhost:16686` ,每次请求调用服务后,就会有信息产生。
