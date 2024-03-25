@@ -24,6 +24,8 @@ for nodejs network
 
 - [ ] 定时任务
 
+- [x] jaeger 接口信息监控
+
 - [ ] more
 
   
