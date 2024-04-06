@@ -5,6 +5,7 @@ import jwt from 'koa-jwt'
 import { errorsCatch } from './middleware/errors-catch'
 import { loadEnv } from './utils'
 import type { DotenvParseOutput } from 'dotenv'
+import { authUser } from './middleware/auth-user'
 
 function appRun(envInfo: DotenvParseOutput) {
   const app = new koa()
@@ -15,6 +16,7 @@ function appRun(envInfo: DotenvParseOutput) {
         secret: envInfo.JWT_SECRET,
       }).unless({ path: [/^\/public/, /\/login/] })
     )
+    .use(authUser)
     .use(koaBody({ multipart: true }))
     .use(router.routes())
   app.listen(8090)

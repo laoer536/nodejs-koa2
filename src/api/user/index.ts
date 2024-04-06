@@ -7,7 +7,8 @@ export const userApis: ApiItem[] = [
   {
     method: 'get',
     path: '',
-    fn: async () => {
+    fn: async (ctx) => {
+      console.log(ctx.state.userInfo)
       const data = await connection.user.findMany()
       return {
         data,
