@@ -31,13 +31,21 @@ export function initializeTracing(serviceName: string): Tracer {
 export const tracer = initializeTracing('nodejs-koa2')
 
 export async function tracerFn<T>(ctx: RouterContext, apiLogic: (ctx: RouterContext) => Promise<T>, desc: string) {
+  const recordInfo = {
+    request: ctx.request,
+    params: ctx.params,
+    body: ctx.request.body,
+    query: ctx.query,
+  }
   await tracer.startActiveSpan(desc, async (requestSpan) => {
     try {
       const { data, message } = (await apiLogic(ctx)) as ApiRes
       requestSpan.setAttribute('http.status', 200)
+      requestSpan.setAttribute('http.koa.api', JSON.stringify(recordInfo))
       success(ctx, data, message)
     } catch (e) {
-      requestSpan.setAttribute('http.status', 400)
+      requestSpan.setAttribute('http.status', 200)
+      requestSpan.setAttribute('http.koa.api', JSON.stringify(recordInfo))
       throw e
     } finally {
       requestSpan.end()
