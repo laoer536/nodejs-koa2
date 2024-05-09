@@ -11,6 +11,7 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "prepare": "husky install",
     "build": "pnpm unbuild",
+    "build:run": "node dist/index.mjs .env.local",
     "prisma:new": "prisma migrate dev && prisma generate",
     "prisma:pull": "prisma db pull && prisma generate",
     "prisma:push": "prisma db push && prisma generate"
