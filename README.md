@@ -34,39 +34,24 @@ for nodejs network
 
 1. 安装docker
 
-2. 执行：[mysql - Official Image | Docker Hub](https://hub.docker.com/_/mysql)
-
-   启动mysql
-
+2. 执行
+   ```docker
+   docker-compose up -d
    ```
-   docker run --name test-koa2 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8
-   ```
-
-   启动redis
-
-   ```
-   docker run --name my-redis -p 6379:6379 -d redis
-   ```
-
-   [安装和启动jaeger](https://hub.docker.com/r/jaegertracing/all-in-one)
-   
-   <br/>
-
-   ![屏幕截图 2024-03-25 135427.png](https://s2.loli.net/2024/03/25/aSOXryiFG2cEQTK.png)
 
 3. 下载代码zip并解压进入该项目中
 
 4. 执行
 
-   ```
+   ```shell
    pnpm i
    ```
 
-   ```
+   ```shell
    npx prisma migrate dev --name init
    ```
 
-   ```
+   ```shell
    pnpm dev:local
    ```
 
